@@ -34,8 +34,8 @@ https://haogongjua.github.io/blog/
 ### 开发工具
 
 - [串口调试助手](https://www.haogongjua.cn/tool/serial-debugger/)
-- [JSON格式化](https://www.haogongjua.cn/tool/json-formatter/)
 - [时间戳转换](https://www.haogongjua.cn/tool/timestamp-converter/)
+- [JSON格式化](https://www.haogongjua.cn/tool/json-formatter/)
 
 ### 编码转换
 
