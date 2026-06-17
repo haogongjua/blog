@@ -25,6 +25,10 @@ hexo new post "文章标题"
 hexo generate && hexo deploy
 ```
 
+## 博客地址
+
+https://haogongjua.github.io/blog/
+
 ## 推荐工具
 
 ### 开发工具
