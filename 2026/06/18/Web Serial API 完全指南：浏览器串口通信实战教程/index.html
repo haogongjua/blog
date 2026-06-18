@@ -4,18 +4,27 @@
   <meta charset="utf-8">
   
   
-  <title>小西的技术笔记</title>
+  <title>Web Serial API 完全指南：浏览器串口通信实战教程 | 小西的技术笔记</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="分享前端开发经验、实用工具推荐、技术学习心得">
-<meta property="og:type" content="website">
-<meta property="og:title" content="小西的技术笔记">
-<meta property="og:url" content="https://haogongjua.github.io/blog/index.html">
+  <meta name="description" content="全面介绍 Web Serial API 的浏览器支持情况、使用条件限制、技术对接方法，以及好工具啊在线串口调试工具的实现细节。适合前端开发者、IoT开发者和硬件爱好者阅读。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Web Serial API 完全指南：浏览器串口通信实战教程">
+<meta property="og:url" content="https://haogongjua.github.io/blog/2026/06/18/Web%20Serial%20API%20%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/index.html">
 <meta property="og:site_name" content="小西的技术笔记">
-<meta property="og:description" content="分享前端开发经验、实用工具推荐、技术学习心得">
+<meta property="og:description" content="全面介绍 Web Serial API 的浏览器支持情况、使用条件限制、技术对接方法，以及好工具啊在线串口调试工具的实现细节。适合前端开发者、IoT开发者和硬件爱好者阅读。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://haogongjua.github.io/blog/serial-select.png">
+<meta property="article:published_time" content="2026-06-18T13:05:00.000Z">
+<meta property="article:modified_time" content="2026-06-18T13:10:12.306Z">
 <meta property="article:author" content="小西">
-<meta property="article:tag" content="前端开发, JavaScript, TypeScript, React, 工具推荐, 技术博客">
+<meta property="article:tag" content="Chrome">
+<meta property="article:tag" content="ESP8266">
+<meta property="article:tag" content="IoT开发">
+<meta property="article:tag" content="Web Serial API">
+<meta property="article:tag" content="串口调试">
+<meta property="article:tag" content="浏览器串口">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://haogongjua.github.io/blog/serial-select.png">
   
     <link rel="alternate" href="/blog/atom.xml" title="小西的技术笔记" type="application/atom+xml">
   
@@ -76,9 +85,7 @@
 </header>
 
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-Web Serial API 完全指南：浏览器串口通信实战教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+        <section id="main"><article id="post-Web Serial API 完全指南：浏览器串口通信实战教程" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
   <div class="article-meta">
     <a href="/blog/2026/06/18/Web%20Serial%20API%20%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/" class="article-date">
   <time class="dt-published" datetime="2026-06-18T13:05:00.000Z" itemprop="datePublished">2026-06-18</time>
@@ -95,8 +102,8 @@
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2026/06/18/Web%20Serial%20API%20%E5%AE%8C%E5%85%A8%E6%8C%87%E5%8D%97%EF%BC%9A%E6%B5%8F%E8%A7%88%E5%99%A8%E4%B8%B2%E5%8F%A3%E9%80%9A%E4%BF%A1%E5%AE%9E%E6%88%98%E6%95%99%E7%A8%8B/">Web Serial API 完全指南：浏览器串口通信实战教程</a>
+    <h1 class="p-name article-title" itemprop="headline name">
+      Web Serial API 完全指南：浏览器串口通信实战教程
     </h1>
   
 
@@ -434,358 +441,19 @@
     </footer>
   </div>
   
-</article>
-
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-如何查看网站权重" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2026/06/18/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%AB%99%E6%9D%83%E9%87%8D/" class="article-date">
-  <time class="dt-published" datetime="2026-06-18T12:55:00.000Z" itemprop="datePublished">2026-06-18</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/SEO%E4%BC%98%E5%8C%96/">SEO优化</a>►<a class="article-category-link" href="/blog/categories/SEO%E4%BC%98%E5%8C%96/%E7%AB%99%E9%95%BF%E5%B7%A5%E5%85%B7/">站长工具</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2026/06/18/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%AB%99%E6%9D%83%E9%87%8D/">如何查看网站权重？站长必备的SEO指标查询指南</a>
-    </h1>
+    <a href="/blog/2026/06/18/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%AB%99%E6%9D%83%E9%87%8D/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">后一篇</strong>
+      <div class="article-nav-title">如何查看网站权重？站长必备的SEO指标查询指南</div>
+    </a>
   
+</nav>
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h2 id="什么是网站权重？"><a href="#什么是网站权重？" class="headerlink" title="什么是网站权重？"></a>什么是网站权重？</h2><p>网站权重是搜索引擎对网站整体质量和权威性的评估指标。虽然百度官方并未公开承认”权重”这一概念，但在SEO行业中，权重被广泛用来衡量网站在搜索引擎中的地位和流量获取能力。</p>
-<p><strong>权重等级</strong>通常分为 0-9 级：</p>
-<ul>
-<li><strong>权重 0</strong>：新站或流量极少的网站</li>
-<li><strong>权重 1-2</strong>：有一定流量，日均预计流量 1-100 IP</li>
-<li><strong>权重 3-4</strong>：中等流量站点，日均预计流量 100-500 IP</li>
-<li><strong>权重 5-6</strong>：较大型网站，日均预计流量 500-1000 IP</li>
-<li><strong>权重 7-9</strong>：知名大站，日均预计流量数千至数万 IP</li>
-</ul>
-<h2 id="为什么需要查看网站权重？"><a href="#为什么需要查看网站权重？" class="headerlink" title="为什么需要查看网站权重？"></a>为什么需要查看网站权重？</h2><p>查看网站权重对站长有重要意义：</p>
-<ol>
-<li><strong>评估SEO效果</strong>：权重变化反映SEO优化成果</li>
-<li><strong>了解竞争态势</strong>：对比同行网站权重，找准定位</li>
-<li><strong>发现优化机会</strong>：权重低的页面需要重点优化</li>
-<li><strong>流量预估参考</strong>：权重与预计流量有一定关联</li>
-</ol>
-<h2 id="如何查看网站权重？"><a href="#如何查看网站权重？" class="headerlink" title="如何查看网站权重？"></a>如何查看网站权重？</h2><h3 id="方法一：站长之家权重查询工具"><a href="#方法一：站长之家权重查询工具" class="headerlink" title="方法一：站长之家权重查询工具"></a>方法一：站长之家权重查询工具</h3><p><strong>站长之家</strong>是国内最权威的权重查询平台之一，提供全面的SEO数据分析。</p>
-<p><strong>查询步骤：</strong></p>
-<ol>
-<li><p><strong>打开站长之家权重查询页面</strong></p>
-<p>访问：<a target="_blank" rel="noopener" href="https://rank.chinaz.com/www.haogongjua.cn">站长之家权重查询</a></p>
-<p>直接输入你想查询的网址，例如：<code>haogongjua.cn</code></p>
-</li>
-<li><p><strong>查看权重信息</strong></p>
-<p>工具会显示以下关键数据：</p>
-<ul>
-<li><strong>百度权重</strong>：最核心的指标</li>
-<li><strong>预计流量</strong>：日均预估IP访问量</li>
-<li><strong>关键词数量</strong>：有排名的关键词总数</li>
-<li><strong>关键词详情</strong>：具体关键词排名和预估流量</li>
-</ul>
-</li>
-<li><p><strong>分析数据变化</strong></p>
-<p>建议定期查询，记录权重变化趋势：</p>
-<ul>
-<li>权重上升 → SEO优化有效</li>
-<li>权重下降 → 需要排查问题</li>
-</ul>
-</li>
-</ol>
-<h3 id="方法二：其他权重查询工具"><a href="#方法二：其他权重查询工具" class="headerlink" title="方法二：其他权重查询工具"></a>方法二：其他权重查询工具</h3><p>除了站长之家，还有以下工具可供参考：</p>
-<table>
-<thead>
-<tr>
-<th>工具名称</th>
-<th>网址</th>
-<th>特点</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>爱站网</td>
-<td>aizhan.com</td>
-<td>数据更新快，界面简洁</td>
-</tr>
-<tr>
-<td>5118</td>
-<td>5118.com</td>
-<td>数据详细，需注册</td>
-</tr>
-<tr>
-<td>词库网</td>
-<td>ciku5.com</td>
-<td>侧重关键词分析</td>
-</tr>
-</tbody></table>
-<p><strong>建议</strong>：多工具交叉验证，数据更准确。</p>
-<h2 id="网站权重的实际意义"><a href="#网站权重的实际意义" class="headerlink" title="网站权重的实际意义"></a>网站权重的实际意义</h2><h3 id="权重-≠-官方指标"><a href="#权重-≠-官方指标" class="headerlink" title="权重 ≠ 官方指标"></a>权重 ≠ 官方指标</h3><p>需要注意：<strong>百度官方从未公开承认权重概念</strong>。站长之家等工具的权重值是通过算法估算得出，并非官方数据。</p>
-<h3 id="权重的参考价值"><a href="#权重的参考价值" class="headerlink" title="权重的参考价值"></a>权重的参考价值</h3><p>虽然不是官方指标，但权重仍有参考价值：</p>
-<ol>
-<li><strong>流量预估</strong>：权重与实际流量有一定正相关</li>
-<li><strong>关键词排名</strong>：权重高的网站更容易获得好排名</li>
-<li><strong>收录速度</strong>：高权重站点文章收录更快</li>
-<li><strong>外链质量</strong>：高权重网站的外链更有价值</li>
-</ol>
-<h3 id="权重数据的局限性"><a href="#权重数据的局限性" class="headerlink" title="权重数据的局限性"></a>权重数据的局限性</h3><p>权重查询存在一定误差：</p>
-<ul>
-<li>不同工具算法不同，结果可能有差异</li>
-<li>预估流量与实际流量不完全一致</li>
-<li>权重更新有延迟，不能实时反映变化</li>
-</ul>
-<h2 id="如何提升网站权重？"><a href="#如何提升网站权重？" class="headerlink" title="如何提升网站权重？"></a>如何提升网站权重？</h2><p>提升权重需要多方面努力：</p>
-<h3 id="1-内容优化"><a href="#1-内容优化" class="headerlink" title="1. 内容优化"></a>1. 内容优化</h3><ul>
-<li><strong>原创优先</strong>：原创内容更容易获得搜索引擎青睐</li>
-<li><strong>定期更新</strong>：保持网站活跃度</li>
-<li><strong>内容质量</strong>：深度、专业、有价值的内容</li>
-<li><strong>长尾词覆盖</strong>：覆盖更多搜索关键词</li>
-</ul>
-<h3 id="2-技术优化"><a href="#2-技术优化" class="headerlink" title="2. 技术优化"></a>2. 技术优化</h3><ul>
-<li><strong>网站速度</strong>：加载速度影响用户体验和排名</li>
-<li><strong>移动适配</strong>：确保移动端友好</li>
-<li><strong>结构清晰</strong>：合理的URL结构和导航</li>
-<li><strong>代码优化</strong>：清理冗余代码，减少错误</li>
-</ul>
-<h3 id="3-外链建设"><a href="#3-外链建设" class="headerlink" title="3. 外链建设"></a>3. 外链建设</h3><ul>
-<li><strong>优质外链</strong>：来自高权重网站的外链更有价值</li>
-<li><strong>相关性</strong>：外链来源网站需与主题相关</li>
-<li><strong>自然增长</strong>：避免大量购买低质量外链</li>
-<li><strong>多样化</strong>：不同类型的外链组合</li>
-</ul>
-<h3 id="4-用户体验"><a href="#4-用户体验" class="headerlink" title="4. 用户体验"></a>4. 用户体验</h3><ul>
-<li><strong>停留时间</strong>：用户停留时间长反映内容质量</li>
-<li><strong>跳出率</strong>：降低跳出率提升网站价值</li>
-<li><strong>互动行为</strong>：评论、分享等互动指标</li>
-</ul>
-<h2 id="实战案例：好工具啊网站权重分析"><a href="#实战案例：好工具啊网站权重分析" class="headerlink" title="实战案例：好工具啊网站权重分析"></a>实战案例：好工具啊网站权重分析</h2><p>以 <strong>好工具啊</strong>（haogongjua.cn）为例，查看其权重情况：</p>
-<p>直接访问：<a target="_blank" rel="noopener" href="https://rank.chinaz.com/www.haogongjua.cn">好工具啊权重查询</a></p>
-<p>通过查询可以了解：</p>
-<ul>
-<li>当前权重等级</li>
-<li>预估日均流量</li>
-<li>有排名的关键词数量</li>
-<li>核心关键词排名情况</li>
-</ul>
-<p><strong>优化建议</strong>：</p>
-<ul>
-<li>增加实用工具数量</li>
-<li>覆盖更多长尾关键词</li>
-<li>提升页面加载速度</li>
-<li>增加优质内容和外链</li>
-</ul>
-<h2 id="权重查询频率建议"><a href="#权重查询频率建议" class="headerlink" title="权重查询频率建议"></a>权重查询频率建议</h2><table>
-<thead>
-<tr>
-<th>网站类型</th>
-<th>查询频率</th>
-<th>原因</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>新站（权重0-1）</td>
-<td>每周一次</td>
-<td>密切关注变化</td>
-</tr>
-<tr>
-<td>成长站（权重2-4）</td>
-<td>每两周一次</td>
-<td>监控优化效果</td>
-</tr>
-<tr>
-<td>稳定站（权重5+）</td>
-<td>每月一次</td>
-<td>维持稳定状态</td>
-</tr>
-</tbody></table>
-<h2 id="常见问题-FAQ"><a href="#常见问题-FAQ" class="headerlink" title="常见问题 FAQ"></a>常见问题 FAQ</h2><h3 id="Q1-权重多久更新一次？"><a href="#Q1-权重多久更新一次？" class="headerlink" title="Q1: 权重多久更新一次？"></a>Q1: 权重多久更新一次？</h3><p>不同平台更新频率不同：</p>
-<ul>
-<li>站长之家：约每周更新</li>
-<li>爱站网：约每日更新</li>
-<li>5118：实时更新部分数据</li>
-</ul>
-<h3 id="Q2-权重突然下降怎么办？"><a href="#Q2-权重突然下降怎么办？" class="headerlink" title="Q2: 权重突然下降怎么办？"></a>Q2: 权重突然下降怎么办？</h3><p>排查步骤：</p>
-<ol>
-<li>检查是否有违规内容</li>
-<li>查看服务器是否稳定</li>
-<li>分析是否有大量死链</li>
-<li>检查外链质量变化</li>
-<li>使用百度站长平台查看索引量</li>
-</ol>
-<h3 id="Q3-新站多久能有权重？"><a href="#Q3-新站多久能有权重？" class="headerlink" title="Q3: 新站多久能有权重？"></a>Q3: 新站多久能有权重？</h3><p>通常需要：</p>
-<ul>
-<li>收录后 1-3 个月可能达到权重1</li>
-<li>持续优化 + 内容积累</li>
-<li>至少10-20篇优质内容</li>
-</ul>
-<h3 id="Q4-权重和排名的关系？"><a href="#Q4-权重和排名的关系？" class="headerlink" title="Q4: 权重和排名的关系？"></a>Q4: 权重和排名的关系？</h3><p>关系如下：</p>
-<ul>
-<li>权重高 → 整体排名更容易提升</li>
-<li>权重低 → 单页面也可能有好排名</li>
-<li>权重 ≠ 页面排名（页面质量更重要）</li>
-</ul>
-<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>网站权重是站长评估SEO效果的重要参考指标。通过站长之家等工具，可以快速了解网站的整体表现和优化方向。</p>
-<p><strong>关键要点回顾：</strong></p>
-<ol>
-<li>权重是估算值，并非官方指标，但有参考价值</li>
-<li>定期查询权重，监控优化效果和竞争态势</li>
-<li>提升权重需从内容、技术、外链、体验多方面入手</li>
-<li>权重查询工具推荐：站长之家、爱站网、5118</li>
-</ol>
-<p><strong>实用链接：</strong></p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://rank.chinaz.com/www.haogongjua.cn">站长之家权重查询</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.haogongjua.cn/">好工具啊在线工具站</a></li>
-</ul>
-<hr>
-<p><strong>作者：小西</strong><br><strong>更新日期：2026-06-18</strong><br><strong>本文首发于：<a href="https://haogongjua.github.io/blog/">小西的技术笔记</a></strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://haogongjua.github.io/blog/2026/06/18/%E5%A6%82%E4%BD%95%E6%9F%A5%E7%9C%8B%E7%BD%91%E7%AB%99%E6%9D%83%E9%87%8D/" data-id="cuidGA_Pns3I1Iqs0kTc5lb1s" data-title="如何查看网站权重？站长必备的SEO指标查询指南" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/SEO/" rel="tag">SEO</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E7%AB%99%E9%95%BF%E5%B7%A5%E5%85%B7/" rel="tag">站长工具</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E7%BD%91%E7%AB%99%E4%BC%98%E5%8C%96/" rel="tag">网站优化</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E7%BD%91%E7%AB%99%E6%9D%83%E9%87%8D/" rel="tag">网站权重</a></li></ul>
-
-    </footer>
-  </div>
   
 </article>
-
-
-
-  
-    <article id="post-我的第一篇博客" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2026/06/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" class="article-date">
-  <time class="dt-published" datetime="2026-06-17T11:50:24.000Z" itemprop="datePublished">2026-06-17</time>
-</a>
-    
-  <div class="article-category">
-    <a class="article-category-link" href="/blog/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/">博客搭建</a>
-  </div>
-
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2026/06/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/">我的第一篇博客</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h1 id="欢迎来到我的技术博客！"><a href="#欢迎来到我的技术博客！" class="headerlink" title="欢迎来到我的技术博客！"></a>欢迎来到我的技术博客！</h1><p>这是我的第一篇博客文章，使用 Hexo 搭建。</p>
-<h2 id="关于我"><a href="#关于我" class="headerlink" title="关于我"></a>关于我</h2><p>我是小西，一个热爱技术的前端开发者。我平时喜欢：</p>
-<ul>
-<li>探索新技术</li>
-<li>开发实用工具</li>
-<li>分享学习心得</li>
-</ul>
-<h2 id="关于这个博客"><a href="#关于这个博客" class="headerlink" title="关于这个博客"></a>关于这个博客</h2><p>这个博客用来分享：</p>
-<ul>
-<li>前端开发经验</li>
-<li>JavaScript &#x2F; TypeScript 技巧</li>
-<li>React 开发实践</li>
-<li>实用工具推荐</li>
-<li>技术学习笔记</li>
-</ul>
-<h2 id="下一步计划"><a href="#下一步计划" class="headerlink" title="下一步计划"></a>下一步计划</h2><ul>
-<li><input disabled="" type="checkbox"> 完善博客主题</li>
-<li><input disabled="" type="checkbox"> 添加更多技术文章</li>
-<li><input disabled="" type="checkbox"> 配置评论系统</li>
-<li><input disabled="" type="checkbox"> 接入统计分析</li>
-</ul>
-<hr>
-<p>感谢阅读！</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://haogongjua.github.io/blog/2026/06/17/%E6%88%91%E7%9A%84%E7%AC%AC%E4%B8%80%E7%AF%87%E5%8D%9A%E5%AE%A2/" data-id="cuidEGGyCsQ9edBC3up_waRzP" data-title="我的第一篇博客" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/Hexo/" rel="tag">Hexo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/blog/tags/%E6%B5%8B%E8%AF%95/" rel="tag">测试</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
-    <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/blog/2026/06/17/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2026-06-17T11:48:51.445Z" itemprop="datePublished">2026-06-17</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="p-name article-title" href="/blog/2026/06/17/hello-world/">Hello World</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>! This is your very first post. Check <a target="_blank" rel="noopener" href="https://hexo.io/docs/">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a target="_blank" rel="noopener" href="https://hexo.io/docs/troubleshooting.html">troubleshooting</a> or you can ask me on <a target="_blank" rel="noopener" href="https://github.com/hexojs/hexo/issues">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">&quot;My New Post&quot;</span></span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/writing.html">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/server.html">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/generating.html">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-
-<p>More info: <a target="_blank" rel="noopener" href="https://hexo.io/docs/one-command-deployment.html">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="https://haogongjua.github.io/blog/2026/06/17/hello-world/" data-id="cuid_jmWgobxUNXejqKyIB0Pt" data-title="Hello World" class="article-share-link"><span class="fa fa-share">分享</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-
-  
 
 
 </section>
